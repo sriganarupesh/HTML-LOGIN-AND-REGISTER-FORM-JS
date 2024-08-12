@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML LOGIN AND REGISTER FORM WITH JS VALDATION]</title>
+    <style>
+
+    </style>
+</head>
+<body >
+<div class="p" style="max-width: 100%;display: flex;justify-content: space-evenly;background-color: lightskyblue;">
+<div style="width:50%;">
+        <p style="text-align: center;">LOGIN FORM</p>
+    <form id="registerForm" onsubmit="login(event)">
+        <div style="display:grid;justify-content: space-evenly;border-style: groove;padding: 130px 10px 140px;">
+    <label for="email">ENTER YOUR E-MAIL ID:</label>
+    <input type="email" id="email" name="email"><br>
+    <label for="password">ENTER YOUR PASSWORD:</label>
+    <input id="pwd" type="password" name="pwd"><br>
+    <label for="cache">ENTER CACHE:</label>
+    <input id="cache" type="cache" name="cache"><br>
+    <input type="submit" value="LOGIN"><br>
+        </div>
+    </form>
+</div>
+<div style="width:50%;">
+    <p style="text-align: center;">REGISTER FORM</p>
+     <form id="regform" onsubmit="rform(event)">
+        <div style="display:grid;justify-content: space-evenly;border-style: groove;padding: 10px 10px 140px;">
+            <label for="name">ENTER YOUR NAME:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">ENTER YOUR E-MAIL IDVAL:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">ENTER YOUR PASSWORD:</label>
+            <input id="password" type="password" name="password" required><br>
+            <label for="confirmPassword">CONFRIM YOUR PASSWORD:</label>
+            <input id="confirmPassword" type="password" name="confirmPassword" required><br>
+            <label for="country">CHOOSE YOUR NATIVE:</label>
+            <select id="country" name="country" required>
+                <option value="">Select a country</option>
+                <option value="spain">Spain</option>
+                <option value="argentina">Argentina</option>
+                <option value="brazil">Brazil</option>
+                <option value="england">England</option>
+                <option value="italy">Italy</option>
+                <option value="germany">Germany</option>
+            </select><br>
+            <div class="flex">
+                <label>MAKE YOUR PASSWORD PROTECTION:</label>     
+                <input type="radio" name="passwordProtection" value="yes" id="passwordYes">
+                <label for="passwordYes">Yes</label>
+                <input type="radio" name="passwordProtection" value="yes" id="passwordYes">
+                <label for="passwordNo">No</label><br> 
+            </div><br>
+            <div class="flex">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">MAKE SURE TO AGREE ALL THE COINDITIONS:</label><br> 
+            </div><br>
+            <input type="submit" value="REGISTER"><br>
+        </div>
+    </form>
+   </div>
+</div>
+</body>
+ <script>
+        function rform(event) {
+            event.preventDefault(); 
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const country = document.getElementById('country').value;
+            const agree = document.getElementById('agree').checked;
+
+            if (username === '' || password === '' || confirmPassword === '' || country === '' || !agree) {
+                alert('All fields must be filled out and agree to conditions must be checked.');
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            const minLength = 10;
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasLowercase = /[a-z]/.test(password);
+
+            if (password.length < minLength || !hasUppercase || !hasLowercase ) {
+                alert('Password must be at least 10 characters long and include at least one uppercase letter, one lowercase letter, and one special character.');
+                return;
+            }
+            alert('Registration successful!');
+        }
+        function login(event) {
+            event.preventDefault(); 
+            const username = document.getElementById('email').value;
+            const password = document.getElementById('pwd').value;
+            const cache = document.getElementById('cache').value;
+            if (username === '' || password === '' || cache === '') {
+                alert('All fields must be filled out');
+                return;
+            }
+            const minLength = 10;
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasLowercase = /[a-z]/.test(password);
+
+            if (password.length < minLength || !hasUppercase || !hasLowercase) {
+                alert('Password must be at least 5 characters long .');
+                return;
+            }
+
+            alert('You had been succesfully completed login!');
+        }
+    </script>
+</html>
